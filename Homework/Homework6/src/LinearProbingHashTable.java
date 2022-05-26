@@ -10,12 +10,28 @@ public class LinearProbingHashTable<K, V> implements GradableMap<K, V>{
 	private double maxLoadFactor;
 	private int currentSize, maxSize;
 	
+	/**
+	 * 
+	 * {@summary
+	 * Constructs a new, empty hash table with default capacity of 11 and load factor of 0.75
+	 * }
+	 * 
+	 */
 	@SuppressWarnings("unchecked")
 	public LinearProbingHashTable(){
 		HashTableEntry<K,V> hashTable[] = new HashTableEntry[11];
 		this.maxLoadFactor = 0.75;
 	}
 	
+	/**
+	 * 
+	 * {@summary
+	 * Constructs a new, empty hash table with a specified capacity and specified load factor
+	 * }
+	 * 
+	 * @param maxSize the initial max capacity of the hash table
+	 * @param maxLoadFactor the load factor of the hash table
+	 */
 	@SuppressWarnings("unchecked")
 	public LinearProbingHashTable(int maxSize, double maxLoadFactor){
 		this.maxSize = maxSize;
@@ -23,6 +39,14 @@ public class LinearProbingHashTable<K, V> implements GradableMap<K, V>{
 		this.maxLoadFactor = maxLoadFactor;
 	}
 
+	/**
+	 * 
+	 * {@summary
+	 * Constructs a new, empty hash table with a specified capacity and a default load factor of 0.75
+	 * }
+	 * 
+	 * @param maxSize the initial max capacity of the hash table
+	 */
 	@SuppressWarnings("unchecked")
 	public LinearProbingHashTable(int maxSize){
 		this.maxSize = maxSize;
@@ -30,6 +54,13 @@ public class LinearProbingHashTable<K, V> implements GradableMap<K, V>{
 		this.maxLoadFactor = 0.75;
 	}
 	
+	/**
+	 * 
+	 * {@summary
+	 * Clears the hash table so that it has no key/value pairs
+	 * }
+	 * 
+	 */
 	@Override
 	public void clear() {
 		for(int i = 0; i < maxSize ; i++) {
@@ -39,6 +70,14 @@ public class LinearProbingHashTable<K, V> implements GradableMap<K, V>{
 	}
 	
 	/**
+	 * 
+	 * {@summary
+	 * Tests if specified object is a key in hash table
+	 * }
+	 * 
+	 * @param Object possible key
+	 * 
+	 * @return true if the specified object is a key in the hash table
 	 * 
 	 */
 	@SuppressWarnings({ "rawtypes", "unchecked" })
@@ -57,6 +96,14 @@ public class LinearProbingHashTable<K, V> implements GradableMap<K, V>{
 	
 	/**
 	 * 
+	 * {@summary
+	 * Tests if specified object is a value in the hash table
+	 * }
+	 * 
+	 * @param value possible value
+	 * 
+	 * @return true if the specified object is a value in the hash table
+	 * 
 	 */
 	@Override
 	public boolean containsValue(Object value) {
@@ -68,6 +115,12 @@ public class LinearProbingHashTable<K, V> implements GradableMap<K, V>{
 	}
 	
 	/**
+	 * 
+	 * {@summary
+	 * Returns a set of all the key/value pairs in the hash table
+	 * }
+	 * 
+	 * @return a set of the key/value pairs in the hash table
 	 * 
 	 */
 	@Override
@@ -82,8 +135,13 @@ public class LinearProbingHashTable<K, V> implements GradableMap<K, V>{
 	
 	/**
 	 * 
-	 * @param key
-	 * @return
+	 * {@summary
+	 * Returns the value of the specified key in the hash table or null if no such key is in hash table
+	 * }
+	 * 
+	 * @throws NullPointerException if specified key is null
+	 * @param key the key whose value is to be returned
+	 * @return the value of the key specified in the hash table
 	 */
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
@@ -107,6 +165,12 @@ public class LinearProbingHashTable<K, V> implements GradableMap<K, V>{
 	
 	/**
 	 * 
+	 * {@summary
+	 * Tests if this hash table has no keys
+	 * }
+	 * 
+	 * @return true if there are no key/value pairs in hash table
+	 * 
 	 */
 	@Override
 	public boolean isEmpty() {
@@ -117,6 +181,12 @@ public class LinearProbingHashTable<K, V> implements GradableMap<K, V>{
 	}
 	
 	/**
+	 * 
+	 * {@summary
+	 * Returns a sat of all the keys stored in the hash table
+	 * }
+	 * 
+	 * @return a set of all the key values in the hash table
 	 * 
 	 */
 	@Override
@@ -130,6 +200,15 @@ public class LinearProbingHashTable<K, V> implements GradableMap<K, V>{
 	}
 
 	/**
+	 * 
+	 * {@summary
+	 * Maps the specified key/value pair into the hash table using linear probing
+	 * }
+	 * 
+	 * @throws NullPointerException if key is null
+	 * @param key the key to be stored
+	 * @param value the value to be stored
+	 * @return returns null of key was not previously in the table or the old value if key exists and value is being overwritten
 	 * 
 	 */
 	@SuppressWarnings({ "unchecked" })
@@ -183,6 +262,12 @@ public class LinearProbingHashTable<K, V> implements GradableMap<K, V>{
 	
 	/**
 	 * 
+	 * {@summary
+	 * Puts all mappings from other map into hash table
+	 * }
+	 * 
+	 * @param otherMap Map to be stored in hash table
+	 * 
 	 */
 	public void putAll(Map<? extends K, ? extends V> otherMap) {
 		for(Entry<? extends K, ? extends V> temp : otherMap.entrySet()) {
@@ -191,6 +276,13 @@ public class LinearProbingHashTable<K, V> implements GradableMap<K, V>{
 	}
 	
 	/**
+	 * 
+	 * {@summary
+	 * Removes the key/value pair by setting availability flag of entry to true. Returns value of key/value pair being removed 
+	 * }
+	 * 
+	 * @throws NullPointerException if the key is null
+	 * @param key The key of the key/value pair to be removed from the hash table
 	 * 
 	 */
 	@SuppressWarnings({ "unchecked", "rawtypes" })
@@ -215,6 +307,15 @@ public class LinearProbingHashTable<K, V> implements GradableMap<K, V>{
 		return null;
 	}
 	
+	/**
+	 * 
+	 * {@summary
+	 * Returns a collection of all the values in the hash table
+	 * }
+	 * 
+	 * @return A collection of all the values in the hash table
+	 * 
+	 */
 	public Collection<V> values(){
 		Collection<V> collection = new ArrayList<V>();
 		for(int i = 0; i < maxSize; i++) {
@@ -224,12 +325,25 @@ public class LinearProbingHashTable<K, V> implements GradableMap<K, V>{
 		return collection;
 	}
 	
+	/**
+	 * 
+	 * {@summary
+	 * Returns how many elements are stored in the hash table
+	 * }
+	 * 
+	 * @return The amount of key/value pairs stored in the hash table
+	 * 
+	 */
 	@Override
 	public int size() {
 		return currentSize;
 	}
 	
 	/**
+	 * 
+	 * {@summary
+	 * Resizes the max size of the hash table by doubling the max size
+	 * }
 	 * 
 	 */
 	@SuppressWarnings({ "rawtypes", "unchecked" })
@@ -247,6 +361,12 @@ public class LinearProbingHashTable<K, V> implements GradableMap<K, V>{
 
 	/**
 	 * 
+	 * {@summary
+	 * Returns an array of all the entries in the hash table
+	 * }
+	 * 
+	 * @return An array of all the entries in the hash table
+	 * 
 	 */
 	@Override
 	public HashTableEntry<K, V>[] getArray() {
@@ -255,6 +375,12 @@ public class LinearProbingHashTable<K, V> implements GradableMap<K, V>{
 
 	/**
 	 * 
+	 * {@summary
+	 * Sets a hash table with specified array of entries
+	 * }
+	 * 
+	 * @param array Array of entries to be put into hash table
+	 * 
 	 */
 	@Override
 	public void setArray(HashTableEntry<K, V>[] array) {
@@ -262,6 +388,12 @@ public class LinearProbingHashTable<K, V> implements GradableMap<K, V>{
 	}
 
 	/**
+	 * 
+	 * {@summary
+	 * Sets the max size of the hash table
+	 * }
+	 * 
+	 * @param size The max size of hash table
 	 * 
 	 */
 	@Override
